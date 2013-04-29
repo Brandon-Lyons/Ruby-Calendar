@@ -35,6 +35,16 @@ class CalTests < Test::Unit::TestCase
 		assert_equal(0, cal.zeller)
 	end
 
+	def test_zeller_january
+		cal = Calendar.new(1, 2000)
+		assert_equal(0, cal.zeller)
+	end
+
+	def test_zeller_february
+		cal = Calendar.new(2, 2000)
+		assert_equal(3, cal.zeller)
+	end
+
 	# def test_final_integration
 	# 	assert_equal `cal 2 2013`, `ruby cal.rb 2 2013`
 	# end

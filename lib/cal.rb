@@ -25,6 +25,14 @@ class Calendar
 	def zeller
 		m = @month
 		y = @year
+		if @month == 1
+			m = 13
+			y = @year - 1
+		elsif @month == 2
+			m = 14
+			y = @year - 1
+		end
+				
 		@first_day = (1 + (((m + 1) * 26) / 10) + y + (y / 4) + 6 * (y / 100) + (y / 400)) % 7
 		@first_day
 	end
