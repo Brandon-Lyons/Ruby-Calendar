@@ -1,9 +1,11 @@
 class Calendar
 	attr_accessor :month
 	attr_accessor :year
+	attr_accessor :first_day
 	attr_accessor :output
 
-
+	# month = ARGV[0]
+	# year = ARGV[1]
 
 	def initialize (month, year)
 		@month = month
@@ -18,6 +20,13 @@ class Calendar
 	def week_row
 		header
 		@output = @output << "Su Mo Tu We Th Fr Sa\n"
+	end
+
+	def zeller
+		m = @month
+		y = @year
+		@first_day = (1 + (((m + 1) * 26) / 10) + y + (y / 4) + 6 * (y / 100) + (y / 400)) % 7
+		@first_day
 	end
 
 
