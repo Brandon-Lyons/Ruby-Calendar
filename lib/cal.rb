@@ -2,7 +2,6 @@ class Calendar
 	attr_accessor :month
 	attr_accessor :year
 	attr_accessor :days
-	attr_accessor :first_day
 	attr_accessor :output
 
 	# month = ARGV[0]
@@ -25,7 +24,7 @@ class Calendar
 	end
 
 	def zeller
-		m = @month
+		m = month
 		y = @year
 		if @month == 1
 			m = 13
@@ -35,13 +34,13 @@ class Calendar
 			y = @year - 1
 		end
 				
-		@first_day = ((1 + (((m + 1) * 26) / 10) + y + (y / 4) + 6 * (y / 100) + (y / 400)) % 7) - 1
+		first_day = ((1 + (((m + 1) * 26) / 10) + y + (y / 4) + 6 * (y / 100) + (y / 400)) % 7) - 1
 
-		if @first_day == -1
-			@first_day = 6
+		if first_day == -1
+			first_day = 6
 		end
 
-		@first_day
+		first_day
 	end
 
 	def days_number
@@ -64,8 +63,7 @@ class Calendar
 
 	def first_line
 		week_row
-		zeller
-		@output << " " * ((@first_day * 3) + 1)
+		@output << " " * ((zeller * 3) + 1)
 		@output << "1"
 		@output
 	end
