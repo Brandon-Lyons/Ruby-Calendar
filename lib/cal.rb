@@ -35,7 +35,12 @@ class Calendar
 			y = @year - 1
 		end
 				
-		@first_day = (1 + (((m + 1) * 26) / 10) + y + (y / 4) + 6 * (y / 100) + (y / 400)) % 7
+		@first_day = ((1 + (((m + 1) * 26) / 10) + y + (y / 4) + 6 * (y / 100) + (y / 400)) % 7) - 1
+
+		if @first_day == -1
+			@first_day = 6
+		end
+
 		@first_day
 	end
 
@@ -49,6 +54,20 @@ class Calendar
 		end					
 		@days = num_days[@month]
 		@days
+	end
+
+	def format_range
+		days_number
+		format = (1..@days).to_a
+		format
+	end
+
+	def first_line
+		week_row
+		zeller
+		@output << " " * ((@first_day * 3) + 1)
+		@output << "1"
+		@output
 	end
 
 
