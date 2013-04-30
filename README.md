@@ -8,11 +8,13 @@ Phase 1
 --
 
 Created integration tests that will compare the final output of my program against cal.
+https://github.com/Brandon-Lyons/Ruby-Calendar/blob/master/test/test_cal_integration.rb
 
 Phase 2
 --
 
 Created unit tests to go along with the TDD mentality of this project.
+https://github.com/Brandon-Lyons/Ruby-Calendar/blob/master/test/test_cal.rb
 
 Phase 3
 --
