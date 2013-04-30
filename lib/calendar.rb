@@ -1,4 +1,4 @@
-class Calendar
+class Month
 	attr_accessor :month
 	attr_accessor :year
 	attr_accessor :output
@@ -10,14 +10,17 @@ class Calendar
 	def initialize (month, year)
 		@month = month.to_i
 		@year = year.to_i
+		raise IndexError if month.to_i < 1 || month.to_i > 12 || year.to_i < 1800 || year.to_i > 3000
 	end
 
 	def header
-		raise IndexError if month.to_i < 1 || month.to_i > 12 || year.to_i < 1800 || year.to_i > 3000
 		month_name = ["January","February","March","April","May","June","July","August","September","October","November","December"]
-		string = "#{month_name[@month - 1]} #{@year}".center(20) << "\n"
-		string << "Su Mo Tu We Th Fr Sa\n"
+		string = "#{month_name[@month - 1]} #{@year}".center(20).rstrip
 		string
+	end
+
+	def week_row
+		string = "Su Mo Tu We Th Fr Sa"
 	end
 
 	def zeller
@@ -66,17 +69,20 @@ class Calendar
 			i += 1
 		end
 		dates += range
-		string = ""
+		dates
+	end
+
+	def display_single_month
+		string = header+ "\n" + week_row+ "\n"
+		dates = format_range
 		until dates.length == 0
 			add = dates.shift(7)
 			string << add.join(" ")
 			string << "\n"
 		end
-		string
-	end
-
-	def display
-		string = header + format_range
+		until string.count("\n") == 7
+			string << "\n"
+		end
 		puts string
 	end
 
