@@ -1,8 +1,8 @@
 class Calendar
 	attr_accessor :month
 	attr_accessor :year
-	attr_accessor :days
 	attr_accessor :output
+	attr_accessor :format
 
 	# month = ARGV[0]
 	# year = ARGV[1]
@@ -45,21 +45,28 @@ class Calendar
 
 	def days_number
 		num_days = { 1 => 31, 2 => 28, 3 => 31, 4 => 30, 5 => 31, 6 => 30, 7 => 31, 8 => 31, 9 => 30, 10 => 31, 11 => 30, 12 => 31 }
-		@days = num_days[@month]
 		if @year % 100 == 0 && @year % 400 == 0
 			num_days[2] = 29
 		elsif @year % 4 == 0 && @year % 100 != 0
 			num_days[2] = 29
 		end					
-		@days = num_days[@month]
-		@days
+		days = num_days[@month]
+		days
 	end
 
 	def format_range
 		days_number
-		format = (1..@days).to_a
-		format
+		@format = (1..days_number).to_a
+		@format.collect! do |num|
+			if num < 10
+				" " + num.to_s
+			else
+				num.to_s
+			end
+		end
+		@format
 	end
+
 
 	def first_line
 		week_row
@@ -67,6 +74,5 @@ class Calendar
 		@output << "1"
 		@output
 	end
-
 
 end
