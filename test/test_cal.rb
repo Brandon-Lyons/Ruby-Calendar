@@ -1,5 +1,5 @@
 require 'test/unit'
-require 'cal'
+require 'calendar'
 
 class CalTests < Test::Unit::TestCase
 
@@ -75,10 +75,14 @@ class CalTests < Test::Unit::TestCase
 		assert_equal([" 1"," 2"," 3"," 4"," 5"," 6"," 7"," 8"," 9","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24","25","26","27","28"], cal.format_range)
 	end
 
-	def test_first_line
-		cal = Calendar.new(5, 1990)
-		assert_equal("      May 1990      \nSu Mo Tu We Th Fr Sa\n       1", cal.first_line)
+	def test_final_output
+		cal = Calendar.new(5, 1995)
+		assert_equal("      May 1995      \nSu Mo Tu We Th Fr Sa\n    1  2  3  4  5  6\n 7  8  9 10 11 12 13\n14 15 16 17 18 19 20\n21 22 23 24 25 26 27\n28 29 30 31", cal.display)
 	end
+	# def test_first_line
+	# 	cal = Calendar.new(5, 1990)
+	# 	assert_equal("      May 1990      \nSu Mo Tu We Th Fr Sa\n       1", cal.first_line)
+	# end
 
 
 	# def test_final_integration
