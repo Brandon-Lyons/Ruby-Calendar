@@ -29,7 +29,22 @@ Ran integration tests to compare the output to cal.
 Phase 5
 --
 
-Currently refactoring code. Code has been refactored with possible future additions to the project in mind.
+Created unit and integration tests to add ability to display entire year if year is the only argument passed.
+Also add ability to display month if name of month is passed instead of an integer.
+Please note that at this time it will only recognize integers or the name of the month spelled out fully and correctly.
+I will put in ability to allow abbreviated names (such as jan or feb) at a later time.
+
+Phase 6
+--
+
+Completed early version of final program.
+It will accept the month and year and display that month only.
+It will also accept just the year and will display the entire calendar for that year.
+
+Phase 7
+--
+
+Currently refactoring code. 
 
 
 
