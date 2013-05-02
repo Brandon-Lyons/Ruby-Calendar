@@ -1,7 +1,6 @@
 require_relative 'calendar'
 
 class Year
-  attr_accessor :year
 
   def initialize (year)
     @year = year
@@ -74,9 +73,7 @@ class Year
 
   def display_year
     string = header
-    a = 1
-    b = 2
-    c = 3
+    a, b, c = 1, 2, 3
     4.times do
       string << month_array[a - 1].center(20) + "  "
       string << month_array[b - 1].center(20) + "  "

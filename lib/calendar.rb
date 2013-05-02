@@ -1,12 +1,10 @@
 class Month
-  attr_accessor :month
-  attr_accessor :year
 
   def initialize (month, year)
     if (1..12).include? month.to_i
       @month = month.to_i
-    else
-      months = ["jan","feb","mar","apr","may","jun","jul","aug","sep","oct","nov","dec"]
+    elsif month != 0
+      months = %w{jan feb mar apr may jun jul aug sep oct nov dec}
       month.downcase!
       search = month[0,3]
       @month = months.index(search).to_i + 1
@@ -20,7 +18,7 @@ class Month
   end
 
   def month_header
-    month_name = ["January","February","March","April","May","June","July","August","September","October","November","December"]
+    month_name = %w{January February March April May June July August September October November December}
     month_name[@month - 1]
   end
   def week_row
@@ -58,7 +56,7 @@ class Month
 
   def format_range
     range = (1..days_number).to_a
-    range.collect! do |num|
+    range.map! do |num|
       if num < 10
         " " + num.to_s
       else
@@ -73,7 +71,6 @@ class Month
     end
     dates += range
     dates
-    # puts dates
   end
 
   def display_single_month
