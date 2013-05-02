@@ -2,10 +2,6 @@ class Month
   attr_accessor :month
   attr_accessor :year
 
-  # month = ARGV[0]
-  # year = ARGV[1]
-
-
   def initialize (month, year)
     if (1..12).include? month.to_i
       @month = month.to_i
