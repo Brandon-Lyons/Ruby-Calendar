@@ -58,9 +58,7 @@ class Year
       add1 = month1.shift(7)
       add2 = month2.shift(7)
       add3 = month3.shift(7)
-      if month1.length >= 7 && month2.length >= 7 && month3.length >= 7
-        string << add1.join(" ") + "  " + add2.join(" ") + "  " + add3.join(" ") + "\n"
-      elsif month1.nil? && month2.nil?
+      if month1.nil? && month2.nil?
         string << empty_lines(2) + (add3 + calc_trailing(add3)).join(" ") + "\n"
       elsif month1.nil?
         string << empty_lines(1) + (add2 + calc_trailing(add2)).join(" ") + (add3 + calc_trailing(add3)).join(" ") + "\n"
