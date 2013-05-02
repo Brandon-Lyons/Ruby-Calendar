@@ -7,16 +7,16 @@ class Month
 
 
   def initialize (month, year)
-    # if (1..12).include? month.to_i
+    if (1..12).include? month.to_i
       @month = month.to_i
-    # else
-    #   months = ["January","February","March","April","May","June","July","August","September","October","November","December"]
-    #   month.to_s
-    #   month.capitalize!
-    #   @month = months.index(month).to_i + 1
-    # end
+    else
+      months = ["January","February","March","April","May","June","July","August","September","October","November","December"]
+      month.to_s
+      month.capitalize!
+      @month = months.index(month).to_i + 1
+    end
     @year = year.to_i
-    # raise IndexError if @month.to_i < 1 || @month.to_i > 12 || @year.to_i < 1800 || @year.to_i > 3000
+    raise IndexError if @month.to_i < 1 || @month.to_i > 12 || @year.to_i < 1800 || @year.to_i > 3000
   end
 
   def month_and_year_header
