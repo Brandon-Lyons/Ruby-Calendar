@@ -30,9 +30,8 @@ Phase 5
 --
 
 Created unit and integration tests to add ability to display entire year if year is the only argument passed.
-Also add ability to display month if name of month is passed instead of an integer.
-Please note that at this time it will only recognize integers or the name of the month spelled out fully and correctly.
-I will put in ability to allow abbreviated names (such as jan or feb) at a later time.
+Also added ability to display month if name of month is passed instead of an integer.
+Ability to identify the month from the first 3 letters of the month argument (apricot = April) has now been implemented.
 
 Phase 6
 --
