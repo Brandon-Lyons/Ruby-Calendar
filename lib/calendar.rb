@@ -7,32 +7,33 @@ class Month
 
 
   def initialize (month, year)
-    range = ["1","2","3","4","5","6","7","8","9","10","11","12"]
-    if range.include? month
+    # if (1..12).include? month.to_i
       @month = month.to_i
-    else
-      months = ["January","February","March","April","May","June","July","August","September","October","November","December"]
-      month.to_s
-      month.capitalize!
-      @month = months.index(month).to_i + 1
-    end
+    # else
+    #   months = ["January","February","March","April","May","June","July","August","September","October","November","December"]
+    #   month.to_s
+    #   month.capitalize!
+    #   @month = months.index(month).to_i + 1
+    # end
     @year = year.to_i
-    raise IndexError if @month.to_i < 1 || @month.to_i > 12 || @year.to_i < 1800 || @year.to_i > 3000
+    # raise IndexError if @month.to_i < 1 || @month.to_i > 12 || @year.to_i < 1800 || @year.to_i > 3000
   end
 
-  def header
+  def month_and_year_header
+    (month_header + " #{@year}").center(20).rstrip
+  end
+
+  def month_header
     month_name = ["January","February","March","April","May","June","July","August","September","October","November","December"]
-    string = "#{month_name[@month - 1]} #{@year}".center(20).rstrip
-    string
+    month_name[@month - 1]
   end
-
   def week_row
     string = "Su Mo Tu We Th Fr Sa"
   end
 
   def zeller
-    m = @month
-    y = @year
+    m = @month.to_i
+    y = @year.to_i
     if @month == 1
       m = 13
       y = @year - 1
@@ -76,17 +77,18 @@ class Month
     end
     dates += range
     dates
+    # puts dates
   end
 
   def display_single_month
-    string = header+ "\n" + week_row+ "\n"
+    string = month_and_year_header+ "\n" + week_row+ "\n"
     dates = format_range
     until dates.length == 0
-      add = dates.shift(7)
+      add = dates.slice!(0,7)
       string << add.join(" ")
       string << "\n"
     end
-    until string.count("\n") == 7
+    until string.count("\n") >= 7
       string << "\n"
     end
     puts string
