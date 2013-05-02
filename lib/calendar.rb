@@ -9,7 +9,7 @@ class Month
       search = month[0,3]
       @month = months.index(search).to_i + 1
     end
-    @year = year.to_i
+    @year = year
     raise IndexError if @month.to_i < 1 || @month.to_i > 12 || @year.to_i < 1800 || @year.to_i > 3000
   end
 
@@ -22,17 +22,14 @@ class Month
     month_name[@month - 1]
   end
   def week_row
-    string = "Su Mo Tu We Th Fr Sa"
+    "Su Mo Tu We Th Fr Sa"
   end
 
   def zeller
     m = @month.to_i
     y = @year.to_i
-    if @month == 1
-      m = 13
-      y = @year - 1
-    elsif @month == 2
-      m = 14
+    if @month == 1 || @month == 2
+      m = @month + 12
       y = @year - 1
     end
     first_day = ((1 + (((m + 1) * 26) / 10) + y + (y / 4) + 6 * (y / 100) + (y / 400)) % 7) - 1
@@ -54,34 +51,32 @@ class Month
     end
   end
 
-  def format_range
-    range = (1..days_number).to_a
-    range.map! do |num|
+  def format_days
+    days = (1..days_number).to_a
+    days.map! do |num|
       if num < 10
         " " + num.to_s
       else
         num.to_s
       end
     end
-    dates = []
     i = 0
     until i == zeller
-      dates.unshift("  ")
+      days.unshift("  ")
       i += 1
     end
-    dates += range
-    dates
+    days
   end
 
   def display_single_month
     string = month_and_year_header+ "\n" + week_row+ "\n"
-    dates = format_range
+    dates = format_days
     until dates.length == 0
-      add = dates.slice!(0,7)
-      string << add.join(" ")
+      week = dates.slice!(0,7)
+      string << week.join(" ")
       string << "\n"
     end
-    until string.count("\n") >= 7
+    until string.count("\n") == 7
       string << "\n"
     end
     puts string

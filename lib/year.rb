@@ -28,7 +28,7 @@ class Year
 
   def days_array(month)
     cal = Month.new(month, @year)
-    days_array = cal.format_range
+    days_array = cal.format_days
     days_array
   end
 
@@ -54,16 +54,21 @@ class Year
     month1 = days_array(a)
     month2 = days_array(b)
     month3 = days_array(c)
-    until month1.length == 0 && month2.length == 0 && month3.length == 0
-      add1 = month1.shift(7)
-      add2 = month2.shift(7)
-      add3 = month3.shift(7)
+    until month1[0].nil? && month2[0].nil? && month3[0].nil?
+      week1 = month1.shift(7)
+      week2 = month2.shift(7)
+      week3 = month3.shift(7)
       if month1.nil? && month2.nil?
-        string << empty_lines(2) + (add3 + calc_trailing(add3)).join(" ") + "\n"
+        string << empty_lines(2)
+        string << (week3 + calc_trailing(week3)).join(" ") + "\n"
       elsif month1.nil?
-        string << empty_lines(1) + (add2 + calc_trailing(add2)).join(" ") + (add3 + calc_trailing(add3)).join(" ") + "\n"
+        string << empty_lines(1)
+        string << (week2 + calc_trailing(week2)).join(" ")
+        string << (week3 + calc_trailing(week3)).join(" ") + "\n"
       else
-        string << (add1 + calc_trailing(add1)).join(" ") + "  " + (add2 + calc_trailing(add2)).join(" ") + "  " + (add3 + calc_trailing(add3)).join(" ") + "\n"
+        string << (week1 + calc_trailing(week1)).join(" ") + "  "
+        string << (week2 + calc_trailing(week2)).join(" ") + "  "
+        string << (week3 + calc_trailing(week3)).join(" ") + "\n"
       end
     end
     string
