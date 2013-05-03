@@ -52,8 +52,8 @@ class Month
   end
 
   def format_days
-    days = (1..days_number).to_a
-    days.map! do |num|
+    days = (1..days_number.to_i).to_a
+    days.collect! do |num|
       if num < 10
         " " + num.to_s
       else
@@ -76,7 +76,7 @@ class Month
       string << week.join(" ")
       string << "\n"
     end
-    until string.count("\n") == 7
+    until string.count("\n") >= 7
       string << "\n"
     end
     puts string
