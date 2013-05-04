@@ -10,7 +10,7 @@ class Month
       @month = months.index(search).to_i + 1
     end
     @year = year
-    raise IndexError if @month.to_i < 1 || @month.to_i > 12 || @year.to_i < 1800 || @year.to_i > 3000
+    raise IndexError unless (1..12).include?(@month) && (1800..3000).include?(@year)
   end
 
   def month_and_year_header
@@ -42,17 +42,12 @@ class Month
     thirtyone = [1,3,5,7,8,10,12]
     return 30 if thirty.include? @month
     return 31 if thirtyone.include? @month
-    if @year % 100 == 0 && @year % 400 == 0
-      29
-    elsif @year % 4 == 0 && @year % 100 != 0
-      29
-    else
-      28
-    end
+    return 29 if @year % 400 == 0 || (@year % 4 ==0 && @year % 100 != 0)
+    28
   end
 
   def format_days
-    days = (1..days_number.to_i).to_a
+    days = (1..days_number).to_a
     days.collect! do |num|
       if num < 10
         " " + num.to_s
@@ -60,10 +55,8 @@ class Month
         num.to_s
       end
     end
-    i = 0
-    until i == zeller
+    zeller.times do
       days.unshift("  ")
-      i += 1
     end
     days
   end

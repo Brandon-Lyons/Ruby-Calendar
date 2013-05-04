@@ -35,10 +35,8 @@ class Year
   def calc_trailing(array)
     n = array.length
     spaces = []
-    if n < 7
-      number = 7 - n
-    end
-    number.to_i.times do
+    number = 7 - n
+    number.times do
       spaces << ("  ")
     end
     spaces
