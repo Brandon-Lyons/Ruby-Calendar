@@ -65,7 +65,7 @@ class Month
     string = month_and_year_header+ "\n" + week_row+ "\n"
     dates = format_days
     until dates.length == 0
-      week = dates.slice!(0,7)
+      week = dates.shift(7)
       string << week.join(" ")
       string << "\n"
     end
