@@ -13,14 +13,16 @@ class Month
     raise IndexError unless (1..12).include?(@month) && (1800..3000).include?(@year)
   end
 
-  def month_and_year_header
-    (month_header + " #{@year}").center(20).rstrip
-  end
-
   def month_header
     month_name = %w{January February March April May June July August September October November December}
     month_name[@month - 1]
   end
+
+  def month_and_year_header
+    (month_header + " #{@year}").center(20).rstrip
+  end
+
+
   def week_row
     "Su Mo Tu We Th Fr Sa"
   end
@@ -64,7 +66,7 @@ class Month
   def display_single_month
     string = month_and_year_header+ "\n" + week_row+ "\n"
     dates = format_days
-    until dates.length == 0
+    until dates.empty?
       week = dates.shift(7)
       string << week.join(" ")
       string << "\n"

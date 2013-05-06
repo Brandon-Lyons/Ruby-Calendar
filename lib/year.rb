@@ -52,7 +52,7 @@ class Year
     month1 = days_array(a)
     month2 = days_array(b)
     month3 = days_array(c)
-    until month1[0].nil? && month2[0].nil? && month3[0].nil?
+    until month1.empty? && month2.empty? && month3.empty?
       week1 = month1.shift(7)
       week2 = month2.shift(7)
       week3 = month3.shift(7)
