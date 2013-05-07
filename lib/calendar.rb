@@ -1,6 +1,8 @@
 class Month
 
-  def initialize (month = Time.now.month, year = Time.now.year)
+  TIME = Time.now
+
+  def initialize (month = TIME.month, year = TIME.year)
     if (1..12).include? month.to_i
       @month = month.to_i
     elsif month != 0

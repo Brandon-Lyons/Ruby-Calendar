@@ -1,4 +1,5 @@
 require_relative 'year'
+
 if ARGV.empty?
   Month.new.display_single_month
 elsif ARGV[1].nil?
@@ -6,8 +7,8 @@ elsif ARGV[1].nil?
   cal = Year.new(year)
   cal.display_year
 else
-  mon = String.new(ARGV[0])
-  yr = ARGV[1].to_i
-  cal = Month.new(mon, yr)
+  month = String.new(ARGV[0])
+  year = ARGV[1].to_i
+  cal = Month.new(month, year)
   cal.display_single_month
 end
