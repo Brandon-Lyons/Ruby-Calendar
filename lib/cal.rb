@@ -1,6 +1,7 @@
 require_relative 'year'
-
-if ARGV[1].nil?
+if ARGV.empty?
+  Month.new.display_single_month
+elsif ARGV[1].nil?
   year = ARGV[0].to_i
   cal = Year.new(year)
   cal.display_year

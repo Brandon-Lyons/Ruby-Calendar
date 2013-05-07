@@ -42,11 +42,6 @@ class Year
     spaces
   end
 
-  def empty_lines(months)
-    space = (" ") * (22 * months)
-    space
-  end
-
   def format_3_months(a, b, c)
     string = ""
     month1 = days_array(a)
@@ -56,18 +51,9 @@ class Year
       week1 = month1.shift(7)
       week2 = month2.shift(7)
       week3 = month3.shift(7)
-      if month1.nil? && month2.nil?
-        string << empty_lines(2)
-        string << (week3 + calc_trailing(week3)).join(" ") + "\n"
-      elsif month1.nil?
-        string << empty_lines(1)
-        string << (week2 + calc_trailing(week2)).join(" ")
-        string << (week3 + calc_trailing(week3)).join(" ") + "\n"
-      else
-        string << (week1 + calc_trailing(week1)).join(" ") + "  "
-        string << (week2 + calc_trailing(week2)).join(" ") + "  "
-        string << (week3 + calc_trailing(week3)).join(" ") + "\n"
-      end
+      string << (week1 + calc_trailing(week1)).join(" ") + "  "
+      string << (week2 + calc_trailing(week2)).join(" ") + "  "
+      string << (week3 + calc_trailing(week3)).join(" ") + "\n"
     end
     string
   end

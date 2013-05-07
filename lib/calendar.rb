@@ -1,6 +1,6 @@
 class Month
 
-  def initialize (month, year)
+  def initialize (month = Time.now.month, year = Time.now.year)
     if (1..12).include? month.to_i
       @month = month.to_i
     elsif month != 0
@@ -9,7 +9,7 @@ class Month
       search = month[0,3]
       @month = months.index(search).to_i + 1
     end
-    @year = year
+    @year = year.to_i
     raise IndexError unless (1..12).include?(@month) && (1800..3000).include?(@year)
   end
 
@@ -51,11 +51,7 @@ class Month
   def format_days
     days = (1..days_number).to_a
     days.collect! do |num|
-      if num < 10
-        " " + num.to_s
-      else
-        num.to_s
-      end
+      num < 10 ? " " + num.to_s : num.to_s
     end
     zeller.times do
       days.unshift("  ")
